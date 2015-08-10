@@ -8,19 +8,21 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-// HTTPHandler blah
-type HTTPHandler func(w http.ResponseWriter, r *http.Request)
-
 // ServerHandlerFn blah
-type ServerHandlerFn func(db *sqlx.DB) HTTPHandler
+type ServerHandlerFn func(*sqlx.DB) func(http.ResponseWriter, *http.Request)
 
 // Framework blah
 type Framework struct {
 	db *DB
 }
 
+// NewFramework blah
+func NewFramework() Framework {
+	return Framework{}
+}
+
 // Init blah
-func (f *Framework) Init(server ServerHandlerFn, connectToDatabase DBPoolFn) HTTPHandler {
+func (f *Framework) Init(server ServerHandlerFn, connectToDatabase DBPoolFn) func(http.ResponseWriter, *http.Request) {
 	var cfg Config
 	env.Parse(&cfg)
 	f.db = &DB{

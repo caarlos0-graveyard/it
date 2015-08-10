@@ -1,4 +1,4 @@
-package http
+package client
 
 import (
 	"io"
@@ -7,15 +7,15 @@ import (
 	"strings"
 )
 
-func Head(url string) (resp *Response, err error) {
+func Head(url string) (resp *http.Response, err error) {
 	return http.Head(url)
 }
 
-func PostForm(url string, data url.Values) (resp *Response, err error) {
+func PostForm(url string, data url.Values) (resp *http.Response, err error) {
 	return http.PostForm(url, data)
 }
 
-func Post(url string, bodyType string, body io.Reader) (resp *Response, err error) {
+func Post(url string, bodyType string, body io.Reader) (resp *http.Response, err error) {
 	return http.Post(url, bodyType, body)
 }
 
