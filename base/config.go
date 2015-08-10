@@ -6,6 +6,5 @@ type Config struct {
 	MigrateDB        bool   `env:"MIGRATE_DB" envDefault:"true"`
 	PostgresURL      string `env:"POSTGRES_URL" envDefault:"postgres://localhost:5432"`
 	DatabaseName     string
-	MigrationsFolder string `env:"MIGRATIONS_PATH" envDefailt:"./migrations"`
-	SSLEnabled       bool
+	MigrationsFolder string `env:"MIGRATIONS_PATH" envDefault:"./migrations"`
 }
