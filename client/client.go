@@ -7,22 +7,6 @@ import (
 	"strings"
 )
 
-func Head(url string) (resp *http.Response, err error) {
-	return http.Head(url)
-}
-
-func PostForm(url string, data url.Values) (resp *http.Response, err error) {
-	return http.PostForm(url, data)
-}
-
-func Post(url string, bodyType string, body io.Reader) (resp *http.Response, err error) {
-	return http.Post(url, bodyType, body)
-}
-
-func Get(url string) (resp *http.Response, err error) {
-	return http.Get(url)
-}
-
 func PutForm(url string, data url.Values) (resp *http.Response, err error) {
 	return Put(url, "application/x-www-form-urlencoded", strings.NewReader(data.Encode()))
 }
