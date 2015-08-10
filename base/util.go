@@ -1,11 +1,12 @@
-package it
+package base
 
 import (
 	"math/rand"
 	"time"
 )
 
-func randomStr() string {
+// RandomStr blah
+func RandomStr() string {
 	rand.Seed(time.Now().UTC().UnixNano())
 	const chars = "abcdefghijklmnopqrstuvwxyz"
 	result := make([]byte, 10)
