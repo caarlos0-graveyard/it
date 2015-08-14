@@ -11,17 +11,17 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-// PoolFn blah
+// PoolFn should create a *sqlx.DB with the given URL.
 type PoolFn func(url string) *sqlx.DB
 
-// DB blah
+// DB holds data to create a *sqlx.DB, as well the *sqlx.DB instance itself.
 type DB struct {
 	connect PoolFn
 	cfg     *base.Config
 	con     *sqlx.DB
 }
 
-// New blah
+// New *DB with the given pool function and Configuration
 func New(connectToDatabase PoolFn, cfg *base.Config) *DB {
 	return &DB{
 		cfg:     cfg,
@@ -29,7 +29,8 @@ func New(connectToDatabase PoolFn, cfg *base.Config) *DB {
 	}
 }
 
-// Init blah
+// Init the DB for testing. Creates a new database for testing and runs the
+// migrations against it.
 func (db *DB) Init() *sqlx.DB {
 	if db.cfg.CreateDB {
 		createTestDatabase(db.cfg)
@@ -40,7 +41,8 @@ func (db *DB) Init() *sqlx.DB {
 	return db.con
 }
 
-// Shutdown blah
+// Shutdown the DB. Closes all connections and deletes the test database that
+// was created in #Init
 func (db *DB) Shutdown() {
 	db.con.Close()
 	if db.cfg.CreateDB {

@@ -13,17 +13,18 @@ import (
 // ServerHandlerFn blah
 type ServerHandlerFn func(*sqlx.DB) func(http.ResponseWriter, *http.Request)
 
-// IT blah
+// IT is the main structure of the integration testing framework.
 type IT struct {
 	db *db.DB
 }
 
-// New blah
+// New creates a new IT instance
 func New() IT {
 	return IT{}
 }
 
-// Init blah
+// Init the IT framework: loads config, creates the database and startup the
+// server.
 func (i *IT) Init(server ServerHandlerFn, connectToDatabase db.PoolFn) func(http.ResponseWriter, *http.Request) {
 	var cfg base.Config
 	env.Parse(&cfg)
@@ -31,8 +32,8 @@ func (i *IT) Init(server ServerHandlerFn, connectToDatabase db.PoolFn) func(http
 	return server(i.db.Init())
 }
 
-// Shutdown blah
+// Shutdown the IT framework.
 func (i *IT) Shutdown() {
 	i.db.Shutdown()
-	log.Println("Shutdown IT IT")
+	log.Println("Shutdown IT...")
 }

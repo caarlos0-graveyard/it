@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// RandomStr blah
+// RandomStr creates a random string. Used to create the database name.
 func RandomStr() string {
 	rand.Seed(time.Now().UTC().UnixNano())
 	const chars = "abcdefghijklmnopqrstuvwxyz"
