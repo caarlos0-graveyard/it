@@ -6,7 +6,6 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/ContaAzul/ab/datastores"
 	"github.com/caarlos0/it"
 	"github.com/jmoiron/sqlx"
 	"github.com/stretchr/testify/assert"
@@ -19,7 +18,7 @@ func TestMain(m *testing.M) {
 		return server(db).ServeHTTP
 	}
 	it := it.New()
-	handler := it.Init(serverUp, datastores.NewDBConnectionPool)
+	handler := it.Init(serverUp, newConnectionPool)
 	defer it.Shutdown()
 	testServer = httptest.NewServer(http.HandlerFunc(handler))
 	defer testServer.Close()
