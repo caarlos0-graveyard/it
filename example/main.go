@@ -57,7 +57,7 @@ func server(db *sqlx.DB) *echo.Echo {
 }
 
 func main() {
-	db := newConnectionPool("postgres://localhost:5432/example")
+	db := newConnectionPool("postgres://localhost:5432/example?sslmode=disable")
 	e := server(db)
-	e.Server(":3000")
+	e.Run(":3000")
 }
