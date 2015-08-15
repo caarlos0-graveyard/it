@@ -6,9 +6,6 @@ go:
 addons:
   - postgresql : "9.3"
 
-before_script:
-  - psql -c 'create database example;' -U postgres
-
 install:
   - go get -t -v ./...
   - go get golang.org/x/tools/cmd/cover
