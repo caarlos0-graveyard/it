@@ -9,7 +9,7 @@ with a real database! It will create a new temporary database for you, run
 the migrations and, after the tests ran, delete it.
 
 The idea is based on an internal framework that we made in Java at
-@ContaAzul.
+[@ContaAzul](http://github.com/ContaAzul).
 
 ## What's optionated
 
