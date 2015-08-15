@@ -1,7 +1,17 @@
 language: go
 
 go:
-  - 1.4
+  - tip
+
+addons:
+  - postgresql : "9.3"
+
+before_script:
+  - psql -c 'create database example;' -U postgres
+
+env:
+  - DATABASE_URL="postgres://postgres@localhost:5432/example?sslmode=disable"
+  - CREATE_TEST_DB=false
 
 install:
   - go get -t -v ./...
