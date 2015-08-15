@@ -88,7 +88,7 @@ func migrate(db *sqlx.DB, cfg *base.Config) {
 func pgExec(stm string, cfg *base.Config) {
 	db, err := sqlx.Connect("postgres", cfg.PostgresURL)
 	if err != nil {
-		log.Fatalln("Failed to open connection to", cfg.PostgresURL)
+		log.Fatalln("Failed to open connection to", cfg.PostgresURL, err)
 	}
 	defer db.Close()
 	if _, err = db.Exec(stm); err != nil {
