@@ -1,0 +1,14 @@
+language: go
+
+go:
+  - 1.4
+
+install:
+  - go get -t -v ./...
+  - go get golang.org/x/tools/cmd/cover
+
+script:
+  - go test -cover ./...
+
+notifications:
+  - email: false
