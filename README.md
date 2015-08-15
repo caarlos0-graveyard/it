@@ -9,7 +9,7 @@ with a real database! It will create a new temporary database for you, run
 the migrations and, after the tests ran, delete it.
 
 The idea is based on an internal framework that we made in Java at
-[ContaAzul](/ContaAzul).
+@ContaAzul.
 
 ## What's optionated
 
@@ -18,4 +18,4 @@ of `database/sql`.
 
 ## Talk is cheap, show me the code!
 
-Check out the [/example] folder!
+Check out the [/example](/example) folder!
