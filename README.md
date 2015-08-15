@@ -18,7 +18,7 @@ At least for now, the only "optionated" thing is the use of `sqlx` instead
 of `database/sql`.
 
 There are also other defaults, but you can override them using environment
-variables. Check the [`config.go` file](/blob/master/base/config.go).
+variables. Check the [`config.go` file](/base/config.go).
 
 ## Talk is cheap, show me the code!
 
