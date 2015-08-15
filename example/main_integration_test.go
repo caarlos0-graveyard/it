@@ -1,4 +1,4 @@
-package main
+package main_test
 
 import (
 	"encoding/json"
@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/caarlos0/it"
+	"github.com/caarlos0/it/example"
 	"github.com/jmoiron/sqlx"
 	"github.com/stretchr/testify/assert"
 )
@@ -14,11 +15,11 @@ import (
 var testServer *httptest.Server
 
 func TestMain(m *testing.M) {
-	serverUp := func(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
-		return server(db).ServeHTTP
+	serverFn := func(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+		return main.Server(db).ServeHTTP
 	}
 	it := it.New()
-	handler := it.Init(serverUp, newConnectionPool)
+	handler := it.Init(serverFn, main.NewConnectionPool)
 	defer it.Shutdown()
 	testServer = httptest.NewServer(http.HandlerFunc(handler))
 	defer testServer.Close()
@@ -34,7 +35,7 @@ func TestCreatesAndListsBook(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusOK, res.StatusCode)
 
-	var books []Book
+	var books []main.Book
 	decoder := json.NewDecoder(res.Body)
 	decoder.Decode(&books)
 	assert.Len(t, books, 1)

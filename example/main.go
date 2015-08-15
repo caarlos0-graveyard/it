@@ -38,7 +38,7 @@ func listBooks(db *sqlx.DB) func(c *echo.Context) error {
 	}
 }
 
-func newConnectionPool(url string) *sqlx.DB {
+func NewConnectionPool(url string) *sqlx.DB {
 	db, err := sqlx.Open("postgres", url)
 	if err != nil {
 		log.Fatal(err)
@@ -49,7 +49,7 @@ func newConnectionPool(url string) *sqlx.DB {
 	return db
 }
 
-func server(db *sqlx.DB) *echo.Echo {
+func Server(db *sqlx.DB) *echo.Echo {
 	e := echo.New()
 	e.Post("/books/:name", createBook(db))
 	e.Get("/books", listBooks(db))
@@ -57,7 +57,7 @@ func server(db *sqlx.DB) *echo.Echo {
 }
 
 func main() {
-	db := newConnectionPool("postgres://localhost:5432/example?sslmode=disable")
-	e := server(db)
+	db := NewConnectionPool("postgres://localhost:5432/example?sslmode=disable")
+	e := Server(db)
 	e.Run(":3000")
 }
