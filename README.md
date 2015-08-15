@@ -1,4 +1,5 @@
-# IT
+# IT [![Build Status](https://img.shields.io/shippable/55c8a219edd7f2c0529b965f.svg)](https://app.shippable.com/projects/55c8a219edd7f2c0529b965f/builds/latest)
+
 
 An optionated Integration Test framework for Go.
 
