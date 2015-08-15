@@ -22,7 +22,7 @@ variables. Check the [`config.go` file](/base/config.go).
 
 ## Talk is cheap, show me the code!
 
-Check out the [/example](/example) folder!
+Check out the [example](/example) folder!
 
 You run then with:
 
