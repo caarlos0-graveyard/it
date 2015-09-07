@@ -51,8 +51,15 @@ func (db *DB) Shutdown() {
 }
 
 func buildDBURL(cfg *base.Config) string {
-	pgURL := strings.Split(cfg.PostgresURL, "?")
-	return pgURL[0] + "/" + cfg.DatabaseName + "?" + pgURL[1]
+	pgURL := cfg.PostgresURL
+	if strings.HasSuffix(pgURL, "/") {
+		pgURL = pgURL[:len(pgURL)-1]
+	}
+	if strings.Contains(pgURL, "?") {
+		pgURL := strings.Split(pgURL, "?")
+		return pgURL[0] + "/" + cfg.DatabaseName + "?" + pgURL[1]
+	}
+	return pgURL + "/" + cfg.DatabaseName
 }
 
 func createTestDatabase(cfg *base.Config) {
