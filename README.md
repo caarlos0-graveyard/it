@@ -1,4 +1,4 @@
-# it [![Build Status](https://img.shields.io/shippable/55c8a219edd7f2c0529b965f.svg)](https://app.shippable.com/projects/55c8a219edd7f2c0529b965f/builds/latest)
+# it [![Circle CI](https://circleci.com/gh/caarlos0/it.svg?style=svg)](https://circleci.com/gh/caarlos0/it)
 
 An optionated Integration Test "framework" for Go.
 
