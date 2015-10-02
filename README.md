@@ -1,4 +1,4 @@
-# it [![Circle CI](https://circleci.com/gh/caarlos0/it.svg?style=svg)](https://circleci.com/gh/caarlos0/it)
+# it [![Circle CI](https://circleci.com/gh/caarlos0/it.svg?style=svg&circle-token=434594c6d2cdae171a9f60b34209157cde821afe)](https://circleci.com/gh/caarlos0/it)
 
 An optionated Integration Test "framework" for Go.
 
