@@ -1,17 +1,17 @@
 package it
 
 import (
+	"database/sql"
 	"log"
 	"net/http"
 
 	"github.com/caarlos0/env"
 	"github.com/caarlos0/it/base"
 	"github.com/caarlos0/it/db"
-	"github.com/jmoiron/sqlx"
 )
 
 // ServerHandlerFn blah
-type ServerHandlerFn func(*sqlx.DB) func(http.ResponseWriter, *http.Request)
+type ServerHandlerFn func(*sql.DB) func(http.ResponseWriter, *http.Request)
 
 // IT is the main structure of the integration testing framework.
 type IT struct {

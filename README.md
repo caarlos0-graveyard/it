@@ -13,8 +13,8 @@ The idea is based on an internal framework that we made in Java at
 
 ## What's optionated
 
-At least for now, the only "optionated" thing is the use of `sqlx` instead
-of `database/sql`.
+- Your app uses a database and that it is PostgreSQL;
+- Your app is a web app.
 
 There are also other defaults, but you can override them using environment
 variables. Check the [`config.go` file](/base/config.go).

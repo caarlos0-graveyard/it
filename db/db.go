@@ -2,23 +2,23 @@ package db
 
 import (
 	"bufio"
+	"database/sql"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/caarlos0/it/base"
-	"github.com/jmoiron/sqlx"
 )
 
-// PoolFn should create a *sqlx.DB with the given URL.
-type PoolFn func(url string) *sqlx.DB
+// PoolFn should create a *sql.DB with the given URL.
+type PoolFn func(url string) *sql.DB
 
-// DB holds data to create a *sqlx.DB, as well the *sqlx.DB instance itself.
+// DB holds data to create a *sql.DB, as well the *sql.DB instance itself.
 type DB struct {
 	connect PoolFn
 	cfg     *base.Config
-	con     *sqlx.DB
+	con     *sql.DB
 }
 
 // New *DB with the given pool function and Configuration
@@ -31,7 +31,7 @@ func New(connectToDatabase PoolFn, cfg *base.Config) *DB {
 
 // Init the DB for testing. Creates a new database for testing and runs the
 // migrations against it.
-func (db *DB) Init() *sqlx.DB {
+func (db *DB) Init() *sql.DB {
 	if db.cfg.CreateDB {
 		createTestDatabase(db.cfg)
 	}
@@ -68,14 +68,14 @@ func createTestDatabase(cfg *base.Config) {
 	pgExec("CREATE DATABASE "+cfg.DatabaseName, cfg)
 }
 
-func prepareTestDB(db *sqlx.DB, cfg *base.Config) *sqlx.DB {
+func prepareTestDB(db *sql.DB, cfg *base.Config) *sql.DB {
 	if cfg.MigrateDB {
 		migrate(db, cfg)
 	}
 	return db
 }
 
-func migrate(db *sqlx.DB, cfg *base.Config) {
+func migrate(db *sql.DB, cfg *base.Config) {
 	log.Println("Migrate-ing database...")
 	files, _ := filepath.Glob(filepath.Join(cfg.MigrationsFolder, "*.sql"))
 	for _, file := range files {
@@ -93,7 +93,7 @@ func migrate(db *sqlx.DB, cfg *base.Config) {
 }
 
 func pgExec(stm string, cfg *base.Config) {
-	db, err := sqlx.Connect("postgres", cfg.PostgresURL)
+	db, err := sql.Open("postgres", cfg.PostgresURL)
 	if err != nil {
 		log.Fatalln("Failed to open connection to", cfg.PostgresURL, err)
 	}

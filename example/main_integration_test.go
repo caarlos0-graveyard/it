@@ -1,6 +1,7 @@
 package main_test
 
 import (
+	"database/sql"
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
@@ -8,14 +9,13 @@ import (
 
 	"github.com/caarlos0/it"
 	"github.com/caarlos0/it/example"
-	"github.com/jmoiron/sqlx"
 	"github.com/stretchr/testify/assert"
 )
 
 var testServer *httptest.Server
 
 func TestMain(m *testing.M) {
-	serverFn := func(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	serverFn := func(db *sql.DB) func(w http.ResponseWriter, r *http.Request) {
 		return main.Server(db).ServeHTTP
 	}
 	it := it.New()

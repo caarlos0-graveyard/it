@@ -50,9 +50,10 @@ func NewConnectionPool(url string) *sqlx.DB {
 }
 
 func Server(db *sqlx.DB) *echo.Echo {
+	dbx := sqlx.NewDb(db, "postgres")
 	e := echo.New()
-	e.Post("/books/:name", createBook(db))
-	e.Get("/books", listBooks(db))
+	e.Post("/books/:name", createBook(dbx))
+	e.Get("/books", listBooks(dbx))
 	return e
 }
 
