@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"log"
 	"net/http"
 
@@ -38,8 +39,8 @@ func listBooks(db *sqlx.DB) func(c *echo.Context) error {
 	}
 }
 
-func NewConnectionPool(url string) *sqlx.DB {
-	db, err := sqlx.Open("postgres", url)
+func NewConnectionPool(url string) *sql.DB {
+	db, err := sql.Open("postgres", url)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -49,7 +50,7 @@ func NewConnectionPool(url string) *sqlx.DB {
 	return db
 }
 
-func Server(db *sqlx.DB) *echo.Echo {
+func Server(db *sql.DB) *echo.Echo {
 	dbx := sqlx.NewDb(db, "postgres")
 	e := echo.New()
 	e.Post("/books/:name", createBook(dbx))
