@@ -25,6 +25,8 @@ func TestDefaults(t *testing.T) {
 	env.Parse(&cfg)
 
 	assert.Equal(t, true, cfg.DropDB)
-	assert.Equal(t, "postgres://localhost:5432", cfg.PostgresURL)
+	assert.Equal(
+		t, "postgres://localhost:5432?sslmode=disable", cfg.PostgresURL,
+	)
 	assert.Equal(t, "./migrations", cfg.MigrationsFolder)
 }
