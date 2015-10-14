@@ -32,9 +32,8 @@ func New(connectToDatabase PoolFn, cfg *base.Config) *DB {
 // Init the DB for testing. Creates a new database for testing and runs the
 // migrations against it.
 func (db *DB) Init() *sql.DB {
-	if db.cfg.CreateDB {
-		createTestDatabase(db.cfg)
-	}
+	db.cfg.DatabaseName = base.RandomStr()
+	createTestDatabase(db.cfg.DatabaseName, db.cfg)
 	dbURL := buildDBURL(db.cfg)
 	log.Println("Connecting to", dbURL)
 	db.con = prepareTestDB(db.connect(dbURL), db.cfg)
@@ -45,7 +44,7 @@ func (db *DB) Init() *sql.DB {
 // was created in #Init
 func (db *DB) Shutdown() {
 	db.con.Close()
-	if db.cfg.CreateDB {
+	if db.cfg.DropDB {
 		pgExec("DROP DATABASE "+db.cfg.DatabaseName, db.cfg)
 	}
 }
@@ -62,16 +61,13 @@ func buildDBURL(cfg *base.Config) string {
 	return pgURL + "/" + cfg.DatabaseName
 }
 
-func createTestDatabase(cfg *base.Config) {
-	cfg.DatabaseName = base.RandomStr()
-	log.Println("Create-ing test database " + cfg.DatabaseName)
-	pgExec("CREATE DATABASE "+cfg.DatabaseName, cfg)
+func createTestDatabase(dbName string, cfg *base.Config) {
+	log.Println("Create-ing test database " + dbName)
+	pgExec("CREATE DATABASE "+dbName, cfg)
 }
 
 func prepareTestDB(db *sql.DB, cfg *base.Config) *sql.DB {
-	if cfg.MigrateDB {
-		migrate(db, cfg)
-	}
+	migrate(db, cfg)
 	return db
 }
 

@@ -14,7 +14,8 @@ The idea is based on an internal framework that we made in Java at
 ## What's optionated
 
 - Your app uses a database and that it is PostgreSQL;
-- Your app is a web app.
+- Your app is a web app;
+- Configuration comes from environment variables.
 
 There are also other defaults, but you can override them using environment
 variables. Check the [`config.go` file](/base/config.go).
