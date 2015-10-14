@@ -24,7 +24,7 @@ variables. Check the [`config.go` file](/base/config.go).
 
 Check out the [example](/example) folder!
 
-You run then with:
+You can easily run it with:
 
 ```sh
 $ cd example
