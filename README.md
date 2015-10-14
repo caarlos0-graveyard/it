@@ -37,3 +37,10 @@ PASS
 ok  	github.com/caarlos0/it/example	0.548s
 go test  4.57s user 0.53s system 161% cpu 3.156 total
 ```
+
+## Lifecycle
+
+- Create a database with a random name in the provided `POSTGRES_URL`;
+- Run all `.sql` files in the `MIGRATIONS_FOLDER` against the created database;
+- Run the tests;
+- Drop the test database (unless `DROP_TEST_DATABASE` is `false`). 
