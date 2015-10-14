@@ -1,6 +1,6 @@
 # it [![Build Status](https://img.shields.io/circleci/project/caarlos0/it/master.svg?style=flat-square)](https://circleci.com/gh/caarlos0/it) [![Coverage Status](https://img.shields.io/coveralls/caarlos0/it.svg?style=flat-square)](https://coveralls.io/github/caarlos0/it?branch=master)
 
-An optionated Integration Test "framework" for Go.
+An opinionated Integration Test "framework" for Go.
 
 ## What it does
 
@@ -11,7 +11,7 @@ the migrations and, after the tests ran, delete it.
 The idea is based on an internal framework that we made in Java at
 [@ContaAzul](http://github.com/ContaAzul).
 
-## What's optionated
+## What's opinionated
 
 - Your app uses a database and that it is PostgreSQL (about to change);
 - Your app is a web app;
