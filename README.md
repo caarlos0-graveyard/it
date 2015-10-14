@@ -28,5 +28,12 @@ You run then with:
 
 ```sh
 $ cd example
-$ go test
+$ time go test
+2015/10/13 22:41:07 Create-ing test database hkermdouni
+2015/10/13 22:41:07 Connecting to postgres://localhost:5432/hkermdouni?sslmode=disable
+2015/10/13 22:41:07 Migrate-ing database...
+PASS
+2015/10/13 22:41:07 Shutdown IT...
+ok  	github.com/caarlos0/it/example	0.548s
+go test  4.57s user 0.53s system 161% cpu 3.156 total
 ```
