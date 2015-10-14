@@ -1,4 +1,4 @@
-# it [![Circle CI](https://circleci.com/gh/caarlos0/it.svg?style=svg&circle-token=434594c6d2cdae171a9f60b34209157cde821afe)](https://circleci.com/gh/caarlos0/it)
+# it [![License](https://img.shields.io/github/license/caarlos0/it.svg?style=flat-square)](/LICENSE.md) [![Build Status](https://img.shields.io/circleci/project/caarlos0/it/master.svg?style=flat-square)](https://circleci.com/gh/caarlos0/it) [![Coverage Status](https://img.shields.io/coveralls/caarlos0/it.svg?style=flat-square)](https://coveralls.io/github/caarlos0/it?branch=master)
 
 An optionated Integration Test "framework" for Go.
 
