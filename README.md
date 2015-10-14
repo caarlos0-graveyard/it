@@ -13,7 +13,7 @@ The idea is based on an internal framework that we made in Java at
 
 ## What's optionated
 
-- Your app uses a database and that it is PostgreSQL;
+- Your app uses a database and that it is PostgreSQL (about to change);
 - Your app is a web app;
 - Configuration comes from environment variables.
 
